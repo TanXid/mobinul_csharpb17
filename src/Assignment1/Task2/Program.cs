@@ -1,17 +1,14 @@
-﻿Console.WriteLine(" Enter how many number you want to input.");
-int n = Convert.ToInt32(Console.ReadLine());
+﻿string[] inputs = Console.ReadLine().Split(',');
 
-double[] numbers = new double[n];
-
-Console.WriteLine(" Enter the numbers: ");
-for (int i = 0; i < n; i++)
+double[] numbers = new double[inputs.Length];
+for (int i = 0; i < inputs.Length; i++)
 {
-    numbers[i] = Convert.ToDouble(Console.ReadLine());
+    numbers[i] = Convert.ToDouble(inputs[i].Trim());
 }
 
-for (int i = 0; i < n - 1; i++)
+for (int i = 0; i < numbers.Length - 1; i++)
 {
-    for (int j = 0; j < n - 1 - i; j++)
+    for (int j = 0; j < numbers.Length - i - 1; j++)
     {
         if (numbers[j] < numbers[j + 1])
         {
@@ -22,8 +19,11 @@ for (int i = 0; i < n - 1; i++)
     }
 }
 
-Console.WriteLine("Sorted numbers in descending order:");
-foreach (double number in numbers)
+for (int i = 0; i < numbers.Length; i++)
 {
-    Console.WriteLine(number);
+    Console.Write(numbers[i]);
+    if (i < numbers.Length - 1)
+    {
+        Console.Write(", ");
+    }
 }

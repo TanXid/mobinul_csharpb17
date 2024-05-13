@@ -1,47 +1,25 @@
-﻿using System.Drawing;
+﻿int size = Convert.ToInt32(Console.ReadLine()); 
 
-Console.Write(" Enter the size of a 2D square array(must be odd): ");
-int n = Convert.ToInt32(Console.ReadLine());
+double[,] squareArray = new double[size, size];
 
-int[,] array = new int[100, 100];
-
-if (n % 2 == 0)
+for (int i = 0; i < size; i++)
 {
-    Console.WriteLine(" Size must be an odd number. ");
-    return;
-}
-
-Console.WriteLine(" Enter the values for the array: ");
-for (int i = 0; i < n; i++)
-{
-    for (int j = 0; j < n; j++)
+    string[] inputValues = Console.ReadLine().Split(' ');
+    for (int j = 0; j < size; j++)
     {
-        Console.Write($" Value of [{i},{j}]: ");
-        array[i, j] = Convert.ToInt32(Console.ReadLine());
+        squareArray[i, j] = Convert.ToDouble(inputValues[j]);
     }
 }
 
-Console.WriteLine(" The 2D array is: ");
-for (int i = 0; i < n; i++)
+double firstDiagonalSum = 0;
+double secondDiagonalSum = 0;
+
+for (int i = 0; i < size; i++)
 {
-    for (int j = 0; j < n; j++)
-    {
-        Console.Write(array[i, j] + " ");
-    }
-    Console.WriteLine();
+    firstDiagonalSum += squareArray[i, i];
+    secondDiagonalSum += squareArray[i, size - i - 1];
 }
 
-int firstDiagonalSum = 0;
-for (int i = 0; i < n; i++)
-{
-    firstDiagonalSum += array[i, i];
-}
-
-int secondDiagonalSum = 0;
-for (int i = 0; i < n; i++)
-{
-    secondDiagonalSum += array[i, n - 1 - i];
-}
-
-Console.WriteLine($" 1st Diagonal Sum: {firstDiagonalSum}");
-Console.WriteLine($" 2st Diagonal Sum: {secondDiagonalSum}");
+Console.WriteLine();
+Console.WriteLine($"1st Diagonal Sum: {firstDiagonalSum}");
+Console.WriteLine($"2nd Diagonal Sum: {secondDiagonalSum}");
